@@ -1,0 +1,35 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '../sensorify/censorify-0.12.4.tgz' ]
+2 info using npm@2.10.1
+3 info using node@v0.12.4
+4 verbose install initial load of C:\Program Files\nodejs\angularjs\Sub_project\sensorify\package.json
+5 warn package.json liveu@0.12.4 No description
+6 warn package.json liveu@0.12.4 No README data
+7 warn package.json liveu@0.12.4 No license field.
+8 verbose readDependencies loading dependencies from C:\Program Files\nodejs\angularjs\Sub_project\sensorify\package.json
+9 silly cache add args [ '../sensorify/censorify-0.12.4.tgz', null ]
+10 verbose cache add spec ../sensorify/censorify-0.12.4.tgz
+11 silly cache add parsed spec { raw: '../sensorify/censorify-0.12.4.tgz',
+11 silly cache add   scope: null,
+11 silly cache add   name: null,
+11 silly cache add   rawSpec: '../sensorify/censorify-0.12.4.tgz',
+11 silly cache add   spec: 'C:\\Program Files\\nodejs\\angularjs\\Sub_project\\sensorify\\sensorify\\censorify-0.12.4.tgz',
+11 silly cache add   type: 'local' }
+12 error addLocal Could not install C:\Program Files\nodejs\angularjs\Sub_project\sensorify\sensorify\censorify-0.12.4.tgz
+13 verbose stack Error: ENOENT, open 'C:\Program Files\nodejs\angularjs\Sub_project\sensorify\sensorify\censorify-0.12.4.tgz'
+13 verbose stack     at Error (native)
+14 verbose cwd C:\Program Files\nodejs\angularjs\Sub_project\sensorify\readwords
+15 error Windows_NT 6.1.7601
+16 error argv "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "../sensorify/censorify-0.12.4.tgz"
+17 error node v0.12.4
+18 error npm  v2.10.1
+19 error path C:\Program Files\nodejs\angularjs\Sub_project\sensorify\sensorify\censorify-0.12.4.tgz
+20 error code ENOENT
+21 error errno -4058
+22 error enoent ENOENT, open 'C:\Program Files\nodejs\angularjs\Sub_project\sensorify\sensorify\censorify-0.12.4.tgz'
+22 error enoent This is most likely not a problem with npm itself
+22 error enoent and is related to npm not being able to find a file.
+23 verbose exit [ -4058, true ]

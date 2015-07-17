@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+//        Object.prototype.iterate = function(callback){
+//            for(var key in this){
+//                callback(key, this[key], this);
+//            }
+//        };
+        Object.defineProperties(Object.prototype, {
+            iterate : {
+                value : function(callback){
+                    for(var key in this){
+                        callback(key, this[key], this);
+                    }
+                }
+            }
+        });
+
+        ({
+            name : 'rint',
+            hobby : ['Guitar', 'Piano']
+        }).iterate(function(key, item){
+                    console.log(key, item);
+                });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

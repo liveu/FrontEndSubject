@@ -1,0 +1,18 @@
+{
+  "author" : "Shchoi",
+  "name" :  "liveu",
+  "version" : "0.12.4",
+  "description " : "Censors words out of text",
+  "main"  : "censortext",
+  "repository" : {
+      "type" : "git",
+      "url" : "http://github.com/liveu/cesorify"
+  },
+  "keywords" : [
+    "censor", "worrds"
+  ],
+  "dependencies " : {},
+  "engines " : {
+    "node" : "*"
+  }
+}

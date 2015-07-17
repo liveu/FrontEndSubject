@@ -1,0 +1,40 @@
+{
+  "name": "angular-ui-grid",
+  "main": [
+    "./npm-debug.log",
+    "./ui-grid.css",
+    "./ui-grid.eot",
+    "./ui-grid.js",
+    "./ui-grid.svg",
+    "./ui-grid.ttf",
+    "./ui-grid.woff"
+  ],
+  "ignore": [],
+  "dependencies": {
+    "angular": ">=1.2.16 <=1.3.x"
+  },
+  "homepage": "http://ui-grid.info",
+  "version": "3.0.0-rc.22",
+  "_id": "angular-ui-grid@3.0.0-rc.22",
+  "scripts": {},
+  "_shasum": "bc3cecad47f6431b1f9950ae392fde120bed3e24",
+  "_from": "angular-ui-grid@*",
+  "_npmVersion": "2.11.2",
+  "_nodeVersion": "0.12.5",
+  "_npmUser": {
+    "name": "c0bra",
+    "email": "emailc0bra@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "c0bra",
+      "email": "emailc0bra@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "bc3cecad47f6431b1f9950ae392fde120bed3e24",
+    "tarball": "http://registry.npmjs.org/angular-ui-grid/-/angular-ui-grid-3.0.0-rc.22.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/angular-ui-grid/-/angular-ui-grid-3.0.0-rc.22.tgz"
+}

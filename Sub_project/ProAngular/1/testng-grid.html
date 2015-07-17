@@ -1,0 +1,27 @@
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="utf-8">
+    <title>Getting Started With ngGrid Example</title>
+    <link href="angular.css" rel="stylesheet"/>
+    <script src="http://code.jquery.com/jquery-latest.min.js "></script>
+    <script src="angular-ui-grid/node_modules/angular/angular.min.js"></script>
+    <script src = "angular-ui-grid/ui-grid.min.js"></script>
+    <script>
+        // main.js
+        var app = angular.module('myApp', ['ngGrid']);
+        app.controller('MyCtrl', function($scope) {
+            $scope.myData = [{name: "Moroni", age: 50},
+                {name: "Tiancum", age: 43},
+                {name: "Jacob", age: 27},
+                {name: "Nephi", age: 29},
+                {name: "Enos", age: 34}];
+            $scope.gridOptions = { data: 'myData' };
+        });
+        angular.module('ng').filter('tel', function (){});
+    </script>
+</head>
+<body ng-controller="MyCtrl">
+<div class="gridStyle" ng-grid="gridOptions">
+</div>
+</body>
+</html>

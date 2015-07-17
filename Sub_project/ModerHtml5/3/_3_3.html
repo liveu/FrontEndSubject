@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.addEventListener('load', function(){
+            var header = document.querySelector('h1');
+
+            header.style.color = 'white';
+            header.style.backgroundColor = 'black';
+
+            var h2Tag = document.querySelectorAll('h2');
+
+            for(var i in h2Tag){
+                i.style.color = 'white';
+                i.style.backgroundColor = 'red';
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Header</h1>
+    <h1>Header</h1>
+    <h2>shchop</h2>
+    <h2>shchop</h2>
+    <h2>shchop</h2>
+    <h2>shchop</h2>
+</body>
+</html>
