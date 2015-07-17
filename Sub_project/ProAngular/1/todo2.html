@@ -38,6 +38,7 @@
         }
 
         function test() {
+
             var rcode = -1;
             var sql = "SELECT JISOCODE, JISOKNM, JISOENM  FROM JISOCODE ";
             var param = new Array();
@@ -47,10 +48,21 @@
                 alert(ajaxobj.errmsg);
                 return null;
             }
-            var testsh = ajaxobj.results[3][2];
-            alert(testsh);
-        }
+            var testsh = ajaxobj.results;//array
+            console.log(testsh);
+            var columns = ["JISOCODE", "JISOKNM", "JISOENM"];
 
+            for(var i = 0 ; i < testsh.length -1; i++){
+                for(var k=0; k < columns.length -1 ; k++){
+                    //named index로 변환
+                    //그리고 제이슨 구조로 변환하기
+                    //해당 스코프의 모델로 제공하기
+                    //smart table
+
+                }
+            }
+            return testsh;
+        }
 
 
         var model = {
@@ -62,7 +74,7 @@
         };
 
         //angular.modeule(생성할 모듈명, 필요한 추가 모듈 배열)
-        var todoApp = angular.module("todoApp", ['ngGrid','ngRoute' ]);
+        var todoApp = angular.module("todoApp", ['ngRoute' ]);
 
         todoApp.filter("checkItems", function() {
             return function(items, showComplete){
@@ -81,10 +93,15 @@
                     test();
                 }
         );
+        todoApp.controller("basicsCtrl", function ($scope) {
+            $scope.rowCollection = test();
+        });
 
 
         todoApp.controller("ToDoCtrl", function ($scope) {
             $scope.todo = model;
+
+
 
             $scope.incompleteCount = function(){
                 var count = 0;
@@ -103,35 +120,6 @@
                 $scope.todo.items.push({action : actionText, done : false});
             }
 
-            //그리드 데이터
-            $scope.myData = [
-                {name: "John", age: 50, location: 'NY'},
-                {name: "Paul", age: 20, location: 'NY'},
-                {name: "Jessy", age: 30, location: 'LA'},
-                {name: "Nick", age: 40, location: 'LA'},
-                {name: "Joy", age: 52, location: 'NY'},
-                {name: "Johney", age: 20, location: 'NY'},
-                {name: "Kim", age: 53, location: 'LA'},
-                {name: "Son", age: 33, location: 'AR'},
-                {name: "Philip", age: 15, location: 'AR'},
-                {name: "Mike", age: 59, location: 'AR'},
-                {name: "Evans", age: 51, location: 'NY'},
-                {name: "Bob", age: 50, location: 'LA'}
-            ];
-
-
-            //그리드 옵션
-            $scope.gridOptions = {
-                data: 'myData',
-                enableCellSelection: true,
-                enableRowSelection: false,
-                enableCellEdit: true,
-                columnDefs: [
-                    {field: 'name', displayName: 'Name', enableCellEdit: true},
-                    {field:'age', displayName:'Age', enableCellEdit: true},
-                    {field: 'location', displayName: 'Location', enableCellEdit: false}
-                ]
-            };
 
         });
 
@@ -172,8 +160,29 @@
     <div class="checkbox-inline">
         <label><input type="checkbox" ng-model="showComplete">Show Complete</label> </label>
     </div>
-    <div ng-grid="gridOptions" class="gridStyle"> </div>
+
 
 </div>
+
+<div ng-controller="basicsCtrl">
+
+    <table st-table="rowCollection" class="table table-striped">
+        <thead>
+        <tr>
+            <th>JISOCODE</th>
+            <th>JISOKNM</th>
+            <th>JISOENM</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rowCollection">
+            <td>{{row[0]}}</td>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>
