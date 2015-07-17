@@ -4,63 +4,25 @@
     <title>TO DO List</title>
     <link href="bootstrap.css" rel="stylesheet" />
     <link href="bootstrap-theme.css" rel="stylesheet" />
-    <link href="angular-ui-grid/ui-grid.min.css"/>
     <link href="angular.css" rel="stylesheet"/>
-    <script src="jjxwebajax_2.7.4.js"></script>
-    <script src="URLParser.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="angular-ui-grid/node_modules/angular/angular.min.js"></script>
-    <script src="angular-route.js"></script>
-    <script src = "angular-ui-grid/ui-grid.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
 
-        var parser = new URLParser();
-        var MYHOST = parser.hostname;
-        var MYPORT = parser.port;
-        var ajaxobj = new jjxweb(MYHOST, MYPORT);
-        var dbname = "nat";
-        var usesqlid = true;
-        openSession();
-
-        /**
-         * FlexMate Session Open
-         */
-        function openSession() {
-            var rcode = -1;
-            rcode = ajaxobj.HR_SESSIONOPEN(true);
-            if(rcode<0) {
-                alert("Failed open session\nError Code : " + ajaxobj.errcode + "\nError Msg : " + ajaxobj.errmsg);
-                return;
-            }
-            test();
-        }
-
-        function test() {
-            var rcode = -1;
-            var sql = "SELECT JISOCODE, JISOKNM, JISOENM  FROM JISOCODE ";
-            var param = new Array();
-
-            rcode = ajaxobj.HR_SELECTINTO(dbname ,sql ,param ,false);
-            if(rcode<0){
-                alert(ajaxobj.errmsg);
-                return null;
-            }
-            var testsh = ajaxobj.results[3][2];
-
-        }
 
 
 
         var model = {
-            user: "Adam",
-            items: [{ action: "Buy Flowers", done: false },
-                { action: "Get Shoes", done: false },
-                { action: "Collect Tickets", done: true },
-                { action: "Call Joe", done: false }]
+            user: "Adam"
         };
 
         //angular.modeule(생성할 모듈명, 필요한 추가 모듈 배열)
-        var todoApp = angular.module("todoApp", ['ngGrid']);
+        var todoApp = angular.module("todoApp", []);
+        todoApp.run(function($http) {
+            $http.get("todo.json").success(function(data){
+                model.items = data;
+            });
+        });
 
         todoApp.filter("checkItems", function() {
             return function(items, showComplete){
@@ -95,35 +57,6 @@
                 $scope.todo.items.push({action : actionText, done : false});
             }
 
-            //그리드 데이터
-            $scope.myData = [
-                {name: "John", age: 50, location: 'NY'},
-                {name: "Paul", age: 20, location: 'NY'},
-                {name: "Jessy", age: 30, location: 'LA'},
-                {name: "Nick", age: 40, location: 'LA'},
-                {name: "Joy", age: 52, location: 'NY'},
-                {name: "Johney", age: 20, location: 'NY'},
-                {name: "Kim", age: 53, location: 'LA'},
-                {name: "Son", age: 33, location: 'AR'},
-                {name: "Philip", age: 15, location: 'AR'},
-                {name: "Mike", age: 59, location: 'AR'},
-                {name: "Evans", age: 51, location: 'NY'},
-                {name: "Bob", age: 50, location: 'LA'}
-            ];
-
-
-            //그리드 옵션
-            $scope.gridOptions = {
-                data: 'myData',
-                enableCellSelection: true,
-                enableRowSelection: false,
-                enableCellEdit: true,
-                columnDefs: [
-                    {field: 'name', displayName: 'Name', enableCellEdit: true},
-                    {field:'age', displayName:'Age', enableCellEdit: true},
-                    {field: 'location', displayName: 'Location', enableCellEdit: false}
-                ]
-            };
 
         });
 
@@ -143,6 +76,7 @@
         <input class="form-control" ng-model="actionText"/>
             <span class="input-group-btn">
                 <button class="btn btn-default" ng-click="addNewItem(actionText)">Add</button>
+
             </span>
     </div>
     <table class="table table-striped">
@@ -164,7 +98,6 @@
     <div class="checkbox-inline">
         <label><input type="checkbox" ng-model="showComplete">Show Complete</label> </label>
     </div>
-    <div ng-grid="gridOptions" class="gridStyle"> </div>
 
 </div>
 </body>
