@@ -11,7 +11,7 @@
     <script src="jjxwebajax_2.7.4.js"></script>
     <script src="URLParser.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="angular-ui-grid/node_modules/angular/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.9/angular.min.js"></script>
     <script src="angular-route.js"></script>
     <script src = "angular-ui-grid/ui-grid.min.js"></script>
     <script>
@@ -40,7 +40,7 @@
         function test() {
 
             var rcode = -1;
-            var sql = "SELECT JISOCODE, JISOKNM, JISOENM  FROM JISOCODE ";
+            var sql = "SELECT JISOCODE, JISOKNM, JISOENM  FROM JISOCODE ORDER BY JISOCODE ASC";
             var param = new Array();
 
             rcode = ajaxobj.HR_SELECTINTO(dbname ,sql ,param ,false);
@@ -58,7 +58,7 @@
                     //그리고 제이슨 구조로 변환하기
                     //해당 스코프의 모델로 제공하기
                     //smart table
-
+                    testsh[i][columns[k]] = testsh[i][]
                 }
             }
             return testsh;
