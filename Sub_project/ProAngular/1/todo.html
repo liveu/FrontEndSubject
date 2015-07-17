@@ -12,12 +12,14 @@
 
 
 
+
+        //angular.modeule(생성할 모듈명, 필요한 추가 모듈 배열)
+        var todoApp = angular.module("todoApp", []);
+
         var model = {
             user: "Adam"
         };
 
-        //angular.modeule(생성할 모듈명, 필요한 추가 모듈 배열)
-        var todoApp = angular.module("todoApp", []);
         todoApp.run(function($http) {
             $http.get("todo.json").success(function(data){
                 model.items = data;

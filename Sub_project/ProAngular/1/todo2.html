@@ -6,6 +6,8 @@
     <link href="bootstrap-theme.css" rel="stylesheet" />
     <link href="angular-ui-grid/ui-grid.min.css"/>
     <link href="angular.css" rel="stylesheet"/>
+
+
     <script src="jjxwebajax_2.7.4.js"></script>
     <script src="URLParser.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -20,7 +22,7 @@
         var ajaxobj = new jjxweb(MYHOST, MYPORT);
         var dbname = "nat";
         var usesqlid = true;
-        openSession();
+
 
         /**
          * FlexMate Session Open
@@ -32,7 +34,7 @@
                 alert("Failed open session\nError Code : " + ajaxobj.errcode + "\nError Msg : " + ajaxobj.errmsg);
                 return;
             }
-            test();
+
         }
 
         function test() {
@@ -46,7 +48,7 @@
                 return null;
             }
             var testsh = ajaxobj.results[3][2];
-
+            alert(testsh);
         }
 
 
@@ -60,7 +62,7 @@
         };
 
         //angular.modeule(생성할 모듈명, 필요한 추가 모듈 배열)
-        var todoApp = angular.module("todoApp", ['ngGrid']);
+        var todoApp = angular.module("todoApp", ['ngGrid','ngRoute' ]);
 
         todoApp.filter("checkItems", function() {
             return function(items, showComplete){
@@ -73,6 +75,12 @@
                 return resultArr;
             }
         });
+
+        todoApp.run(function() {
+                    openSession();
+                    test();
+                }
+        );
 
 
         todoApp.controller("ToDoCtrl", function ($scope) {
