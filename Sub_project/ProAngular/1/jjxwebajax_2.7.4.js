@@ -345,7 +345,7 @@ jjxweb.prototype = {
 	 * @param usesqlid: flag for use SQLID
 	 * @return result 0:success
 	 */
-	HR_SELECTINTO: function(dbname, sqlstring, sqlparamarray, usesqlid, useXml) {
+	HR_SELECTINTO: function(dbname, sqlstring, sqlparamarray, usesqlid,   useXml) {
 		if(useXml==null || useXml.split(" ").join("")=="")
 			useXml = "1";
 

@@ -2,9 +2,8 @@
 <html data-ng-app="todoApp">
 <head>
     <title>TO DO List</title>
-    <link href="bootstrap.css" rel="stylesheet" />
-    <link href="bootstrap-theme.css" rel="stylesheet" />
-    <link href="angular-ui-grid/ui-grid.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="angular.css" rel="stylesheet"/>
 
 
@@ -12,8 +11,13 @@
     <script src="URLParser.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="angular-route.js"></script>
     <script src = "angular-ui-grid/ui-grid.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.1/smart-table.min.js"></script>
+
+
     <script>
 
         var parser = new URLParser();
@@ -37,31 +41,35 @@
 
         }
 
+
         function test() {
-
             var rcode = -1;
-            var sql = "SELECT JISOCODE, JISOKNM, JISOENM  FROM JISOCODE ORDER BY JISOCODE ASC";
+            var sql = "SELECT JISOCODE, JISOKNM, JISOENM, JISOKADDR, ZIPCD  FROM JISOCODE ORDER BY JISOCODE ASC";
             var param = new Array();
+            var columns = ["JISOCODE", "JISOKNM", "JISOENM", "JISOKADDR", "ZIPCD"];
 
-            rcode = ajaxobj.HR_SELECTINTO(dbname ,sql ,param ,false);
+            rcode = ajaxobj.HR_SELECTINTO(dbname ,sql ,param , false);
             if(rcode<0){
                 alert(ajaxobj.errmsg);
                 return null;
             }
             var testsh = ajaxobj.results;//array
+            testsh = toNamedIndex(testsh, columns);
             console.log(testsh);
-            var columns = ["JISOCODE", "JISOKNM", "JISOENM"];
 
-            for(var i = 0 ; i < testsh.length -1; i++){
-                for(var k=0; k < columns.length -1 ; k++){
-                    //named index로 변환
-                    //그리고 제이슨 구조로 변환하기
-                    //해당 스코프의 모델로 제공하기
-                    //smart table
-                    testsh[i][columns[k]] = testsh[i][]
+            return testsh;
+        }
+
+
+
+
+        function toNamedIndex(result, columns){
+            for(var i = 0 ; i < result.length -1; i++){
+                for(var k=0; k < columns.length  ; k++){
+                    result[i][columns[k]] = result[i][k];
                 }
             }
-            return testsh;
+            return result;
         }
 
 
@@ -74,7 +82,7 @@
         };
 
         //angular.modeule(생성할 모듈명, 필요한 추가 모듈 배열)
-        var todoApp = angular.module("todoApp", ['ngRoute' ]);
+        var todoApp = angular.module("todoApp", ['smart-table', 'ngRoute']);
 
         todoApp.filter("checkItems", function() {
             return function(items, showComplete){
@@ -90,9 +98,11 @@
 
         todoApp.run(function() {
                     openSession();
-                    test();
+
                 }
         );
+
+
         todoApp.controller("basicsCtrl", function ($scope) {
             $scope.rowCollection = test();
         });
@@ -164,21 +174,57 @@
 
 </div>
 
+
 <div ng-controller="basicsCtrl">
+    <div style="padding-left: 1430px; margin-bottom: 5px">
+        <button popover-placement="top" popover="On the Top!" class="btn btn-success" ng-click="test();"> 추가 </button>
+        <button popover-placement="top" popover="On the Top!" class="btn btn-info" ng-click="test();"> 조회 </button>
+        <button popover-placement="top" popover="On the Top!" class="btn btn-info"> 저장 </button>
+        <button popover-placement="top" popover="On the Top!" class="btn btn-info"> 삭제 </button>
+        <button popover-placement="top" popover="On the Top!" class="btn btn-info"> 엑셀 </button>
+    </div>
 
     <table st-table="rowCollection" class="table table-striped">
         <thead>
+
         <tr>
-            <th>JISOCODE</th>
-            <th>JISOKNM</th>
-            <th>JISOENM</th>
+            <th>
+                <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Small button <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>fadlkj</li>
+                    <li>fadlkj</li>
+                    <li>fadlkj</li>
+
+                </ul>
+            </th>
+            <th colspan="5">
+                <input st-search="" class="form-control" placeholder="지원영문명 조회하기" type="text" id="searchText"/>
+            </th>
+        </tr>
+        <tr>
+            <th>지원코드</th>
+            <th>지원명</th>
+            <th>지원영문명</th>
+            <th>지원 주소</th>
+            <th>우편번호</th>
+            <th>상세보기</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="row in rowCollection">
-            <td>{{row[0]}}</td>
-            <td>{{row[1]}}</td>
-            <td>{{row[2]}}</td>
+        <tr ng-repeat="row in rowCollection" st-select-row="row" st-select-mode="multiple">
+            <td>{{row.JISOCODE}}</td>
+            <td>{{row.JISOKNM}}</td>
+            <td>{{row.JISOENM}}</td>
+            <td>{{row.JISOKADDR}}</td>
+            <td>{{row.ZIPCD}}</td>
+            <td>
+                <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-success">
+                    <i class="glyphicon glyphicon-zoom-in">
+                    </i>
+                </button>
+            </td>
         </tr>
         </tbody>
     </table>

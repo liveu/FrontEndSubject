@@ -7,7 +7,9 @@
 </head>
 <body data-ng-app="myApp">
     <div data-ng-controller = "helloWorldCtrl">
-        <div hello-World name = "name"></div>
+        <div> Hello {{name.first}} {{name.last}}! </div>
+        <input data-ng-model="name.first"/>
+        <input data-ng-model="name.last"/>
     </div>
     <script src="js/directives.js"></script>
     <script src="js/vendor/angular.js"></script>
