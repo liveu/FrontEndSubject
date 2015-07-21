@@ -59,9 +59,17 @@
     </form>
     <script>
         var elements = document.getElementsByTagName("img");
-        for (var i = 0; i < elements.length; i++) {
-            console.log("Element: " + elements[i].tagName + " " + elements[i].src);
+        for(var i =0 ; i <elements.length ; i++){
+            console.log("Element : "  + elements[i].tagName + " " + elements[i].src);
+            elements[i].style.opacity = 0.5;
         }
+        setTimeout(function(){
+            var elements = document.getElementsByTagName("img");
+            for(var i =0 ; i <elements.length ; i++){
+                console.log("Element : "  + elements[i].tagName + " " + elements[i].src);
+                elements[i].style.opacity = 1;
+            }
+        }, 500);
     </script>    
 </body>
 </html>
