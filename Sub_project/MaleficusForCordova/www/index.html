@@ -1,0 +1,67 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title>Maleficus Login Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/login.css" rel="stylesheet"/>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="plugins/com.maleficus.hybrid.MaleficusJSBridgePlugin/www/MaleficusJSBridgePlugin.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+
+        app.initialize();
+
+
+        function showToast(){
+            console.log("showToastshowToastshowToastshowToast");
+            var textValue = "shchoi";
+            var data = ["6666666666666666666666"];
+            MaleficusJSBridgePlugin.bridgeAction(textValue, data);
+            location.href("tabIndex.html");
+        }
+
+        function onDeviceReady() {
+            // console.log("Device ready");
+        }
+        document.addEventListener("deviceready", onDeviceReady, false);
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row row-centered">
+        <div class="col-sm-6 col-md-4 col-md-offset-4  col-centered">
+            <h1 class="text-center login-title" >Maleficus</h1>
+            <h1 class="text-center login-title">Extingusher</h1>
+            <h3 class="text-center login-title">Admin Page</h3>
+            <div class="account-wall"  >
+                <img class="profile-img" src="img/loginlogo2.png" alt="" style="margin-bottom : 20px; width: 250px; height: 250px; display: block; margin-left: auto; margin-right: auto;">
+                <form class="form-signin">
+                    <input type="text" class="form-control" placeholder="Email" required autofocus>
+                    <input type="password" class="form-control" placeholder="Password" required>
+                    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="showToast()">
+                        Sign in</button>
+                    <label class="checkbox pull-left">
+                        <input type="checkbox" value="remember-me">
+                        Remember me
+                    </label>
+                    <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
