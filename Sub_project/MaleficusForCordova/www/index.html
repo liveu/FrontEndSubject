@@ -9,7 +9,10 @@
     <title>Maleficus Login Page</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/common.css" rel="stylesheet"/>
     <link href="css/login.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="plugins/com.maleficus.hybrid.MaleficusJSBridgePlugin/www/MaleficusJSBridgePlugin.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
@@ -27,7 +30,7 @@
             var textValue = "shchoi";
             var data = ["6666666666666666666666"];
             MaleficusJSBridgePlugin.bridgeAction(textValue, data);
-            location.href("tabIndex.html");
+            location.href = "tabIndex.html";
         }
 
         function onDeviceReady() {
@@ -36,13 +39,14 @@
         document.addEventListener("deviceready", onDeviceReady, false);
     </script>
 </head>
+
 <body>
 <div class="container">
     <div class="row row-centered">
         <div class="col-sm-6 col-md-4 col-md-offset-4  col-centered">
-            <h1 class="text-center login-title" >Maleficus</h1>
-            <h1 class="text-center login-title">Extingusher</h1>
-            <h3 class="text-center login-title">Admin Page</h3>
+            <h1 class="text-center login-title" style="color: #ffffff; font-style: oblique" >Maleficus</h1>
+            <h1 class="text-center login-title" style="color: #ffffff" >Extingusher</h1>
+            <h3 class="text-center login-title" style="color: #ffffff" >Admin Page</h3>
             <div class="account-wall"  >
                 <img class="profile-img" src="img/loginlogo2.png" alt="" style="margin-bottom : 20px; width: 250px; height: 250px; display: block; margin-left: auto; margin-right: auto;">
                 <form class="form-signin">
@@ -51,10 +55,10 @@
                     <button class="btn btn-lg btn-primary btn-block" type="button" onclick="showToast()">
                         Sign in</button>
                     <label class="checkbox pull-left">
-                        <input type="checkbox" value="remember-me">
+                        <input type="checkbox" value="remember-me"/>
                         Remember me
                     </label>
-                    <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                    <a href="#" class="pull-right need-help" style="color: #ffffff; margin-top: 9px;" >Need help? </a><span class="clearfix"></span>
                 </form>
             </div>
 
